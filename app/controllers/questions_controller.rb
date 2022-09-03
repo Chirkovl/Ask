@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :set_question!, only: %i[show destroy edit update]
+
   def index
     @questions = Question.all
   end
@@ -8,7 +10,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find_by(params[:id])
+    # Connect answers to question form
+    @answer = @question.answers.build
+    @answers = Answer.order created_at: :desc
   end 
 
 
@@ -24,11 +28,9 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:id])
   end
 
   def update
-    @question = Question.find(params[:id])
 
     if @question.update(question_params)
       flash[:success] = "Question updated!"
@@ -39,7 +41,6 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
     flash[:success] = "Question deleted!"
 
@@ -51,5 +52,9 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:title, :body)
+  end
+
+  def set_question!
+    @question = Question.find (params[:id])
   end
 end 
