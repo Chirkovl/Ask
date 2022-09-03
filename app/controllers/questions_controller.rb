@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
   def show
     # Connect answers to question form
     @answer = @question.answers.build
-    @answers = Answer.order created_at: :desc
+    @answers = @question.answers.order created_at: :desc
   end 
 
 
