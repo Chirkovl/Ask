@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
 
   def index
     @pagy, @questions = pagy Question.order(created_at: :desc)
-    # @questions = Question.order(created_at: :desc).page(params[:page])
+    @questions = @questions.decorate
   end
 
   def new
@@ -11,10 +11,11 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @question = @question.decorate
     # Connect answers to question form
     @answer = @question.answers.build
     @pagy, @answers = pagy @question.answers.order(created_at: :desc)
-    # @answers = @question.answers.order(created_at: :desc).page(params[:page])
+    @answers = @answers.decorate
   end 
 
 
