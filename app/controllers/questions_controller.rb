@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     @question = @question.decorate
     # Connect answers to question form
     @answer = @question.answers.build
-    @pagy, @answers = pagy @question.answers.order(created_at: :desc)
+    @pagy, @answers = pagy(@question.answers.order(created_at: :desc))
     @answers = @answers.decorate
   end
 
