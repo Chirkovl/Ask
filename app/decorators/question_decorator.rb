@@ -4,6 +4,7 @@ class QuestionDecorator < Draper::Decorator
   delegate_all
 
   def formatted_created_at
-    created_at.strftime('%Y-%m-%d %H-%M:%S')
+    # use rails-i18n gem
+    l created_at, format: :long
   end
 end
