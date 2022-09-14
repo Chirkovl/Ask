@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
   def create
     @answer = @question.answers.build(answer_params)
     if @answer.save
-      flash[:success] = 'Answer created!'
+      flash[:success] = t('.success')
       redirect_to question_path(@question)
     else
       @question = @question.decorate
@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
-    flash[:succes] = 'Answer deleted!'
+    flash[:succes] = t('.success')
     redirect_to question_path(@question)
   end
 
@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_params)
-      flash[:success] = 'Answer updated!'
+      flash[:success] = t('.success')
       # redirect to updated answer in answer list
       redirect_to question_path(@question, anchor: dom_id(@answer))
     else
