@@ -11,6 +11,23 @@ en:
       title: "Welcome to AskIt!"
   menu:
     home: "Home"
+    questions: 'Questions'
   questions:
+    index:
+      title: "Questions"
+    show:
+      write_answer: "Write your answer"
+      answers: "Answers"
+    create:
+      success: 'Question created!'
+    update:
+      success: 'Question updated!'
     destroy:
       success: 'Question deleted!'
+  answers:
+    create:
+      success: 'Answer created!'
+    update:
+      success: 'Answer updated!'
+    destroy:
+      success: 'Answer deleted!'

@@ -6,9 +6,9 @@ class AnswersController < ApplicationController
   before_action :set_answer!, except: :create
 
   def create
-    @answer = @question.answers.build(answer_params)
+    @answer = @question.answers.build(answer_create_params)
     if @answer.save
-      flash[:success] = 'Answer created!'
+      flash[:success] = t('.success')
       redirect_to question_path(@question)
     else
       @question = @question.decorate
@@ -20,15 +20,15 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
-    flash[:succes] = 'Answer deleted!'
+    flash[:succes] = t('.success')
     redirect_to question_path(@question)
   end
 
   def edit; end
 
   def update
-    if @answer.update(answer_params)
-      flash[:success] = 'Answer updated!'
+    if @answer.update(answer_update_params)
+      flash[:success] = t('.success')
       # redirect to updated answer in answer list
       redirect_to question_path(@question, anchor: dom_id(@answer))
     else
@@ -38,7 +38,11 @@ class AnswersController < ApplicationController
 
   private
 
-  def answer_params
+  def answer_create_params
+    params.require(:answer).permit(:body).merge(user_id: current_user.id)
+  end
+
+  def answer_update_params
     params.require(:answer).permit(:body)
   end
 

@@ -11,6 +11,23 @@ ru:
       title: "Добро пожаловать в AskIt!"
   menu:
     home: "Главная"
+    questions: 'Вопросы'
   questions:
+    index:
+      title: "Список вопросов"
+    show:
+      write_answer: "Дайте ответ на вопрос"
+      answers: "Ответы"
+    create:
+      success: 'Вопрос задан!'
+    update:
+      success: 'Вопрос обновлен!'
     destroy:
       success: 'Вопрос удален!'
+  answers:
+    create:
+      success: 'Ответ отправлен!'
+    update:
+      success: 'Ответ обновлен!'
+    destroy:
+      success: 'Ответ удален!'
